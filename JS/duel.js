@@ -19,6 +19,7 @@ class Unit extends Card {
     }
 }
 
+
 class Effect extends Card{
     constructor(name, cost, text, stat, magnitude){
         super(name, cost);
