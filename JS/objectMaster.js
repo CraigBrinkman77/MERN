@@ -54,4 +54,7 @@ console.log(flying);
 const count = pokémon.filter(p => p.types[0] == 'normal').length
 console.log(count)
 
+const normalNumber = pokémon.filter(a => a.types[0] == "normal" || a.types[1] == "normal").length;
+console.log(normalNumber)
+
 
