@@ -11,7 +11,24 @@ function UserForm() {
     const [passwordError, setPasswordError] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [passwordConfirmError, setPasswordConfirmError] = useState("");
+    const [formComplete, setFormComplete] = useState(false)
+    
 
+
+    const createUser = (e) => {
+        e.preventDefault();
+        const newUser = { firstName, lastName, email, password };
+        console.log("Welcome", newUser);
+        setFormComplete( true );
+    };
+    
+    const formMessage = () => {
+        if( formComplete ) {
+	        return ("Thank you for submitting the form!") ;
+	} else {
+	    return ("Welcome, please submit the form");
+	}
+    };
     const handleFirstName = (e) => {
         setFirstName(e.target.value);
         if(firstName.length < 1){
@@ -73,7 +90,10 @@ function UserForm() {
 
     return (
         <div>
-            <form>
+            <form onSubmit={createUser}>
+                <div>
+                    <p>{formMessage}</p>
+                </div>
                 <div>
                     <label>First Name: </label>
                     <input type="text" onChange={handleFirstName}></input>
@@ -119,6 +139,7 @@ function UserForm() {
                         ''
                     }
                 </div>
+                <button type='submit'></button>
             </form>
             <h4>Your Form Data</h4>
             <p>First Name: {firstName}</p>
