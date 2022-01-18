@@ -1,12 +1,15 @@
-import logo from './logo.svg';
+import BoxInput from './comppnent/BoxInput';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <div className="background-color-alert">
-        <h1> Party Time</h1>
-      </div>
+    <div className="">
+      <header className="bg-success d-flex justify-content-center">
+        <h1 className='text-light'>Box Generator</h1>
+      </header>
+
+      <BoxInput />
+
     </div>
   );
 }
