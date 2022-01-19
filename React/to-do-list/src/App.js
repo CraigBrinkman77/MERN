@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import NewTodoForm from './components/NewTodoForm';
 import Todos from './components/Todos';
 
 function App() {
@@ -40,20 +41,10 @@ function App() {
 
   return (
     <div>
-      <div className='d-flex justify-content-center text-center p-2 bg-primary'>
-        <form onSubmit={(event) => {
-          handleNewTodoSubmit(event);
-        }}>
-          <input className='m-2' type="text" value={newTodo} onChange={(event) => {
-            setNewTodo(event.target.value);
-          }} />
-          <div>
-            <button className='btn btn-success m-2'>Add</button>
-          </div>
-        </form>
-      </div>
-			<div className='d-flex-column m-2 justify-content-center text-center p-1 bg-info'>
+      
+			<NewTodoForm handleNewTodoSubmit={handleNewTodoSubmit} setNewTodo={setNewTodo} newTodo={newTodo} />
 
+			<div className='d-flex-column m-2 justify-content-center text-center p-1 bg-info'>
       {
         todos.map((todo, i) => {
           return (

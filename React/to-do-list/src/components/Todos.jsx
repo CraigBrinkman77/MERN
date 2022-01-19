@@ -2,6 +2,7 @@ import React from 'react'
 
 
 const Todos = (props) => {
+    const todo = props.todo
     const todoClasses = ['bold', 'ml-2'];
 
     if (todo.complete) {
@@ -11,9 +12,9 @@ const Todos = (props) => {
     return (
 
         <div className='m-2'>
-            <input checked={todo.complete} type='checkbox' onChange={(event) => { handleToggle(props.i) }} />
+            <input checked={todo.complete} type='checkbox' onChange={(event) => { props.handleToggle(props.i) }} />
             <span className={todoClasses.join(' ')}>{todo.text}</span>
-            <button className='btn btn-danger ml-3' onClick={(event) => { handleTodoDelete(props.i) }}>Delete</button>
+            <button className='btn btn-danger ml-3' onClick={(event) => { props.handleTodoDelete(props.i) }}>Delete</button>
         </div>
     )
 }
