@@ -1,23 +1,73 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Todos from './components/Todos';
 
 function App() {
+  const [newTodo, setNewTodo] = useState('')
+  const [todos, setTodos] = useState([])
+
+  const handleNewTodoSubmit = (event) => {
+    event.preventDefault();
+    if (newTodo.length === 0) {
+      return;
+    }
+		const todoItem = {
+			text: newTodo,
+			complete: false
+		}
+    console.log(newTodo);
+    setTodos([...todos, todoItem]);
+    setNewTodo('');
+  }
+
+  const handleTodoDelete = (delInx) => {
+    const filteredTodos = todos.filter((todo, i) => {
+      return i !== delInx;
+    });
+    setTodos(filteredTodos);
+  }
+
+	const handleToggle = (index) =>{
+		const checkedTodos = todos.map((todo, i) =>{
+			if (index === i){
+				const updatedTodo = {...todo, complete: !todo.complete}
+				return updatedTodo
+			}
+		})
+		setTodos(checkedTodos)
+	}
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className='d-flex justify-content-center text-center p-2 bg-primary'>
+        <form onSubmit={(event) => {
+          handleNewTodoSubmit(event);
+        }}>
+          <input className='m-2' type="text" value={newTodo} onChange={(event) => {
+            setNewTodo(event.target.value);
+          }} />
+          <div>
+            <button className='btn btn-success m-2'>Add</button>
+          </div>
+        </form>
+      </div>
+			<div className='d-flex-column m-2 justify-content-center text-center p-1 bg-info'>
+
+      {
+        todos.map((todo, i) => {
+          return (
+            <Todos 
+						key={i}
+						todo={todo}
+						handleToggle={handleToggle}
+						i={i}
+						handleTodoDelete={handleTodoDelete}
+						/>
+          );
+        })
+      }
+			</div>
     </div>
   );
 }
