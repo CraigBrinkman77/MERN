@@ -1,0 +1,45 @@
+use my_first_db
+
+db.createCollection('students')
+
+db.students.insert({name: 'Craig', home_state: "OH", lucky_number: 7, birthday: {month: 11, day: 02, year: 1993}})
+db.students.insert({name: 'Greg', home_state: "CA", lucky_number: 77, birthday: {month: 12, day: 02, year: 1997}})
+db.students.insert({name: 'Egg', home_state: "CA", lucky_number: 17, birthday: {month: 3, day: 02, year: 1976}})
+db.students.insert({name: 'Braig', home_state: "CO", lucky_number: 20, birthday: {month: 9, day: 11, year: 2001}})
+db.students.insert({name: 'Chris', home_state: "WY", lucky_number: 2, birthday: {month: 7, day: 21, year: 1984}})
+
+db.students.find()
+
+db.students.find({home_state: "CA"})
+
+db.students.find({lucky_number: {$lt: 3}})
+
+db.students.find({lucky_number: {$lte: 20}})
+
+db.students.find({lucky_number: { $gte:1, $lte: 17}})
+
+db.students.updateMany({}, {$set: {interests: ['coding, brunch, MongoDB']}})
+
+db.students.updateOne({name: 'Craig'}, {$push: {interests: 'disc golf'}})
+
+db.students.updateOne({name: 'Egg'}, {$push: {interests: 'taxes'}})
+
+db.students.updateOne({name: 'Egg'}, {$pull: {interests: 'taxes'}})
+
+db.students.updateOne({name: 'Egg'}, {$pop: {interests: 1'}})
+
+db.students.deleteMany({home_state: 'CA'})
+
+db.students.deleteOne({name: 'Egg'})
+
+students.deleteOne({lucky_number: {$lt: 5}})
+
+db.students.updateMany({}, {$set: {number_of_belts: 0}})
+
+db.students.updateOne({home_state: 'CO' }, {$inc: {number_of_belts: 1}})
+
+db.students.updateMany({}, {$rename: {'number_of_belts':'belts_earned'}})
+
+db.students.updateMany({}, [{$unset: ['lucky_number']}])
+
+db.students.updateMany({},{$currentDate: {updated_on:{$type:'date'}}})
