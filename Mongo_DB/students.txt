@@ -43,3 +43,7 @@ db.students.updateMany({}, {$rename: {'number_of_belts':'belts_earned'}})
 db.students.updateMany({}, [{$unset: ['lucky_number']}])
 
 db.students.updateMany({},{$currentDate: {updated_on:{$type:'date'}}})
+
+{ $push: { <field>: { $each: [ <value1>, <value2> ... ] } } }
+
+{ $addToSet: { <field>: { $each: [ <value1>, <value2> ... ] } } }
