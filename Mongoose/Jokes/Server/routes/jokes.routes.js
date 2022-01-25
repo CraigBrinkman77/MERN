@@ -6,4 +6,5 @@ module.exports = app => {
   app.put("/api/jokes/update/:id", jokesController.updateExistingJoke);
   app.post("/api/jokes/new", jokesController.createNewJoke);
   app.delete("/api/jokes/delete/:id", jokesController.deleteAnExistingJoke);
+  app.delete("/api/jokes/delete/", jokesController.deleteAllJokes);
 };
