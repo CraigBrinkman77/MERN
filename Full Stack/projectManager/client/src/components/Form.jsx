@@ -16,7 +16,7 @@ const Form = (props) => {
             .then(res => console.log("Response: ", res))
             .catch(err => console.log("Error: ", err))
         setDescription("")
-        setPrice(0)
+        setPrice(0) 
         setTitle("")
         props.refreshList()
     }

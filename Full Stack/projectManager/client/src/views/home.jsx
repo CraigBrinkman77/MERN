@@ -29,7 +29,10 @@ const Home = () => {
                 {
                     products ?
                         products.map((product, i) => 
-                            <Link to={`/product/${product._id}`} key={i} >{product.title} </Link>
+                            <div>
+                                <Link to={`/${product._id}`} key={i} >{product.title} </Link>
+                                <p>idk</p>
+                            </div>
                         )
                         :
                         <h1> No Products</h1>
